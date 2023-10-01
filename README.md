@@ -2,37 +2,39 @@
 
 Thank you for checking out this research project
 
-Today, I will be looking at how a batter's wOBA can outperform their xwOBA 
+Today, I will be looking at what types of batted balls can lead to a batter's wOBA outperforming their xwOBA 
 - The xwOBA value I am using comes from Statcast's 'estimated_woba_using_speedangle' column in their pitch by pitch CSV data
-  - This version of xwOBA is only taking into account the launch speed and the *vertical* launch angle of the batted ball
+  - This calculation of xwOBA is only taking into account the launch speed and the *vertical* launch angle of the batted ball
 
+The idea behind this project is that xwOBA is frequently used to explain a batter or pitcher that is getting lucky or unlucky
+- But if there are types of batted balls that generally lead to notable discrepancies in wOBA/xwOBA, then it may be the case that the player is not getting lucky or unlucky, instead, that is just the way they impact the ball
+  - Batters nor pitchers have complete control over their type of batted balls, but there are likely to be tendencies developed through the player's approach, mechanics, or pitch usage that results in a certain type of batted ball more often than others
+- Ultimately, it is an attempt to identify some type of skill component that is being misattributed to luck
 
 It is widely understood that a *batter's* **above average sprint speed** can lead to ***outperforming*** his xwOBA and a *pitching team's* **above average defense** can lead the batter to ***underperforming*** his xwOBA 
 - Batter's sprint speed and pitching team's defense are not the factors that I am evaluating in this project
 
 Here, I will look at the *horizontal* component of launch angle (spray angle) to see what xwOBA is missing by excluding it
-- To do this, I will catgeorize wOBA and xwOBA values on batted balls by: Pull, Center, Oppo
-  - Additionally, each type of batted ball is divided into 4 more categories: Flyball, Linedrive, Groundball, Popup
+- To do this, I will catgeorize wOBA and xwOBA values on batted balls by: ***Pull, Center, Oppo***
+  - Additionally, each type of batted ball is divided into 4 more categories: ***Flyball, Linedrive, Groundball, Popup***
     - The following table shows the wOBA vs. xwOBA value for each of those 12 distinct types of batted balls
       - 'd_wOBA' is wOBA - xwOBA
       - 'rate' is each batted ball type's frequency as a percentage
 
   ![Screenshot 2023-09-27 150552](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/0b88a4b2-5d5f-4236-9a72-b7410c3d4ac8)
 
-- Pulled Flyballs and Oppo Groundballs are the type of batted balls that can lead a batter to outperforming their xwOBA
-  - Pulled Flyballs' being listed here makes sense when you see that Center Flyballs lead to a batter most underperforming their xwOBA
-    - Put simply, if a ball is hit 399 feet, it is likely to have a *higher* ***xwOBA*** based on the fact that most balls batted similarly will find a fence in the gap or down the line to go over for a homerun, but when the ball is hit towards Center it is more likely that there will be room for the defender to make a play (*lowering* ***wOBA***)
-  - Oppo Groundballs being listed here makes sense when you see that the most popular type of batted ball is a Pulled Groundball (22.7%), whereas Oppo Groundballs are hit at about 5.5%
-    - This large difference causes defenses to typically be positioned for Pulled Groundballs, so when Oppo Groundballs are hit, they catch the defense off guard and find a hole
+- This table shows that the type of batted balls that is most likely to lead to a batter outperforming their xwOBA are Pulled Flyballs and Oppo Groundballs
+  - When you see that Center Flyballs lead to a batter most underperforming their xwOBA, it makes sense how Pulled Flyballs top this list
+    - If a ball is hit with 30 degree launch angle and 98 mph launch speed, it is likely to have a *higher* ***xwOBA*** based on the fact that most balls hit like that will find a fence in the gap or down the line to go over for a homerun (increasing wOBA and therefore xwOBA), but when that same 30 degree/98mph Flyball is hit to Center it is more likely that there will be room for the defender to make a play (*lowering* ***wOBA***)
+    - So why not Oppo Flyballs? Because batters will naturally have more power to their pullside
+  - When you see that the most popular type of batted ball is a Pulled Groundball (22.7%), whereas Oppo Groundballs are hit at about 5.5%, it makes sense why Oppo Groundballs are listed here as well
+    - This forces defenses to generally position themselves anticipating a Pulled Groundball, so when a Oppo Groundball is hit it tends to catch the defense out of position and becomes more likely to find a hole
 
-The idea behind looking for this discrepancy between wOBA and xwOBA by batted ball type is that many times xwOBA will be used to help explain a batter or pitcher that is getting lucky or getting unlucky
-- However, if there are types of batted balls that can lead to large discrepancies in wOBA/xwOBA, then it may be the case that the player is not getting lucky or unlucky, instead, that is just the way they impact the ball
-  - Batters nor pitchers have complete control over their type of batted balls, but there is likely a tendency developed through their pitch usage, mechanics or overall approach that results in a certain type of batted ball more often than others
-- In other words, there may be some type of skill component that is being misattributed to luck
+
 
 # Players
 ## Batters
-### List of batters with >= upper 75th percentile 'PFB+OGB' rate
+### List of batters with >= 75th percentile 'PFB+OGB' rate
 - PFB is Pulled FB rate
 - OGB is Oppo GB rate
 
@@ -61,7 +63,7 @@ The idea behind looking for this discrepancy between wOBA and xwOBA by batted ba
 | 2019      | Lorenzo Cain     | 0.319| 0.323 | -0.004 | 16.1%  | 2.2%    | 13.9%   | 6.7%    | 2526 | NA           |
 | 2023      | Marcell Ozuna    | 0.341| 0.361 | -0.020 | 16.0%  | 8.6%    | 7.4%    | 14.4%   | 1637 | 26.9 ft/s    |
 | 2021      | Mike Zunino      | 0.374| 0.358 | 0.016  | 16.0%  | 14.5%   | 1.5%    | 13.5%   | 1502 | 26.1 ft/s    |
-| 2023      | Hunter Renfroe   | 0.330| 0.293 | 0.037  | 16.0 %  | 10.7%   | 5.2%    | 10.7%   | 1723 | 27.1 ft/s    |
+| 2023      | Hunter Renfroe   | 0.330| 0.293 | 0.037  | 16.0 % | 10.7%   | 5.2%    | 10.7%   | 1723 | 27.1 ft/s    |
 | 2019      | José Iglesias    | 0.329| 0.294 | 0.035  | 16.0%  | 4.9%    | 11.0%   | 10.1%   | 1968 | NA           |
 | 2022      | Byron Buxton     | 0.381| 0.365 | 0.016  | 15.9%  | 12.9%   | 3.0%    | 15.1%   | 1558 | 29.9 ft/s    |
 | 2019      | Nolan Arenado    | 0.427| 0.353 | 0.073  | 15.9%  | 8.2%    | 7.6%    | 11.8%   | 2426 | 25.4 ft/s    |
@@ -76,7 +78,7 @@ The idea behind looking for this discrepancy between wOBA and xwOBA by batted ba
 | 2021      | Adam Duvall      | 0.333| 0.326 | 0.006  | 15.4%  | 13.6%   | 1.8%    | 20.8%   | 2158 | 28.3 ft/s    |
 | 2019      | Robinson Chirinos| 0.362| 0.323 | 0.039  | 15.4%  | 10.2%   | 5.1%    | 13.0%   | 1752 | NA           |
 | 2022      | Jurickson Profar | 0.329| 0.320 | 0.009  | 15.4%  | 7.5%    | 7.9%    | 9.4%    | 2830 | 26.5 ft/s    |
-| 2019      | Trea Turner      | 0.373| 0.327 | 0.046  | 15.2 %  | 5.9%    | 9.3%    | 9.1%    | 2272 | 30.4 ft/s    |
+| 2019      | Trea Turner      | 0.373| 0.327 | 0.046  | 15.2 % | 5.9%    | 9.3%    | 9.1%    | 2272 | 30.4 ft/s    |
 | 2022      | DJ LeMahieu      | 0.349| 0.347 | 0.002  | 15.2%  | 0.7%    | 14.5%   | 6.4%    | 2199 | 26.4 ft/s    |
 | 2022      | Joc Pederson     | 0.375| 0.363 | 0.012  | 15.1%  | 8.8%    | 6.3%    | 15.8%   | 1706 | 26.5 ft/s    |
 | 2022      | Pete Alonso      | 0.372| 0.358 | 0.014  | 15.1%  | 9.8%    | 5.2%    | 11.9%   | 2526 | 26.1 ft/s    |
@@ -85,26 +87,59 @@ The idea behind looking for this discrepancy between wOBA and xwOBA by batted ba
 | 2019      | Delino DeShields | 0.315| 0.276 | 0.039  | 15.0%  | 3.8%    | 11.3%   | 10.2%   | 1702 | NA           |
 
 ### NOTES
-- I could have weighted Pull Flyballs more heavily in my PFB+OGB rate to more accurately reflect their potential xwOBA value, but I just wanted a quick screenshot of players that Pull Flyballs, hit Oppo Groundballs, or a bit of both
-- the average d_wOBA for this group is still .27
+- I could have weighted Pull Flyballs more heavily in the PFB+OGB rate to more accurately reflect their potential xwOBA value, but I just wanted to provide a quick screenshot of players that Pull Flyballs, hit Oppo Groundballs, or a bit of both
+  - minimumu 1500 batted balls
+- the average d_wOBA for this group is still .27 (wOBA/xwOBA)
   - They are outperforming their wOBA at an above average rate
+- the uper 75th percentile value for PFB% is:
+  - average:
+- the upeer 75th percentile value for OGB% is:
+  - average:
 
 ### Player Spotlight
 #### Isaac Paredes
   - In his first 2 years, he has outperformed his xwOBA despite having below average sprint speed (26.1)
-    - wOBA/xwOBA: 2022: /  2023:
 
-    
-  - You cannot just say that this batter is getting lucky because he has displayed a skill to pull fly balls leading to this perceived "luck"
+![Screenshot 2023-10-01 004943](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/38ab2bcb-cd36-4766-ba2d-382725ab3bee)
 
-#### Nolan Arenado too
+
+- This is a prime example of a batter you cannot just write off as getting lucky because he has displayed a skill to pull fly balls leading to this perceived "luck"
+- Here is the wOBA/xwOBA breakdown by batted ball type for Isaac Paredes in 2022 & 2023
+
+##### 2022
+![Screenshot 2023-10-01 005412](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/dac4984d-46ae-4a40-9f8d-fcd3a70ca771)
+
+##### 2023
+![Screenshot 2023-10-01 005341](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/0b863bbf-c35c-4bac-9bb6-34b2ce2d7c2a)
+
+- He pulls Flyballs almost 3 times more than the league average rate
+- Another interesting note: in 2022, the wOBA value on Paredes' Oppo Groundballs underperformed the xwOBA value (negative d_wOBA) which is contrary to the league wide trend shown above 
+  - But in 2023, that number rebounded back to normal rates and his overall wOBA value reflected this
+
+#### Nolan Arenado is another prime example of a player like Paredes
 
 #### Bo Bichette
   - Known to outperform his xwOBA despite average foot speed
-    - wOBA/xwOBA: 2021: /   2022: /  2023: /
-  - hits a lot of oppo field groundballs
+    - He pulls flyballs at such a low rate that you would expect him to be someone that does not outperform his xwOBA - since that is the main way of doing it 
+
+    
+![Screenshot 2023-10-01 011233](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/92a29793-25a7-4420-b7f0-575571ec12e3)
+
+- But what's happening in 2023?
+
+##### 2021
+![Screenshot 2023-10-01 011323](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/8db5d3ec-62a4-4393-b578-e8c953878d32)
+##### 2022
+![Screenshot 2023-10-01 011335](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/5dc924ce-8b84-4592-bf17-cd182e37d391)
+##### 2023
+![Screenshot 2023-10-01 011350](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/7e1c699c-16c7-4b90-a56f-6d7c6e691c41)
+
+  - The wOBA value for his Oppo Groundballs has plummeted from above .400 to below .300
+    - It is likely that the removal of the shift in 2023 has hurt batters hitting oppo groundballs like Bo Bichette
+    - Maybe defenses were bound to make this adjustment against Bichette regardless
+  - Regardless, he is an example of a player that has benefited from hitting a lot of Oppo Groundballs
  
-#### DJ LeMahieu too
+#### DJ LeMahieu is another great example too
 
 ### List of batters with >= 75th percentile Center FB rate
 
@@ -131,7 +166,7 @@ The idea behind looking for this discrepancy between wOBA and xwOBA by batted ba
 | 2022      | Yoán Moncada       | 0.274 | 0.282 | -0.008 | 18.3%      | 3.8%     | 5.5%     | 1752 | 27.5 ft/s           |
 | 2023      | Adolis García      | 0.380 | 0.377 | 0.003  | 18.3%      | 8.0%     | 4.5%     | 1983 | 28.0 ft/s           |
 | 2022      | Salvador Perez     | 0.343 | 0.332 | 0.010  | 18.1%      | 7.0%     | 2.9%     | 1715 | 25.4 ft/s           |
-| 2023      | Jorge Soler        | 0.360 | 0.366 | -0.006 | 18.1%      | 7.6%     | 4.3%    | 1903 | 26.8 ft/s            |
+| 2023      | Jorge Soler        | 0.360 | 0.366 | -0.006 | 18.1%      | 7.6%     | 4.3%     | 1903 | 26.8 ft/s           |
 | 2023      | Ozzie Albies       | 0.348 | 0.325 | 0.022  | 18.1%      | 9.6%     | 0.8%     | 1975 | 28.2 ft/s           |
 | 2022      | Jesús Aguilar      | 0.300 | 0.312 | -0.012 | 18.1%      | 6.2%     | 4.8%     | 2121 | 24.0 ft/s           |
 | 2022      | Taylor Ward        | 0.374 | 0.363 | 0.011  | 18.0%      | 5.7%     | 3.6%     | 2352 | 28.3 ft/s           |
@@ -162,12 +197,23 @@ The idea behind looking for this discrepancy between wOBA and xwOBA by batted ba
 
 ### Notes
 - The average d_wOBA for this group of hitters was lower than average
-  - There are a couple people that find themselves on both lists
+  - There are a couple people that find themselves on both lists:
 
 ### Player Spotlight
 #### Matt Chapman
-  - Known to underperform his xwOBA despite higher sprint speed (28.3)
-    - Simply hits too many flyballs to center
+  - Known to underperform his xwOBA despite higher sprint speed (28.3 ft/s)
+  - 
+![Screenshot 2023-10-01 012517](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/3335e55f-0f42-456a-bfde-b6c16fd9864f)
+
+##### 2021
+![Screenshot 2023-10-01 012627](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/2590254a-2d01-4e7c-bcdd-9d91a49766e8)
+##### 2022
+![Screenshot 2023-10-01 012638](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/16028e6a-960f-4655-af94-adbeb979efd0)
+##### 2023
+![Screenshot 2023-10-01 012647](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/de9c0d1d-bce1-4d92-94a7-375a54febbe1)
+
+  - You can see that he simply hits way too many flyballs to center
+  - Also, his positive d_wOBA trend in 2023 can likely be attributed to the fact that he is getting lucky with his pulled groundballs
 
 #### Kyle Tucker is another example too
 
