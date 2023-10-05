@@ -2,34 +2,53 @@
 ## Intro
 
 In this baseball project, I am using Statcast pitch-by-pitch data from 2019 to 2023 in RStudio to examine the types of batted balls that can lead to a batter or pitcher's wOBA outperforming their xwOBA
-- The idea behind this analysis is that xwOBA is often used to explain a batter or pitcher that may be getting lucky or unlucky, but if there are types of batted balls that generally lead to notable discrepancies in wOBA/xwOBA, then it may be the case that the player is not getting lucky or unlucky, instead, that is just how they hit the ball (or how it is hit against them)
+- More specifically, I categorize batted balls by ***Pull, Center, Oppo*** and ***Flyball, Groundball, Linedrive, Popup*** in an attempt to identify wOBA vs. xwOBA differences based on *where* the ball was hit
+- If there are notable differences in the league-wide wOBA and xwOBA based on where the ball was hit, then it implies that any individual player's actual wOBA/xwOBA discrepancy, or lack thereof, warrants further evaluation
+- I am not implying that batters or pitchers have complete control over the type of batted balls that occur on an at-bat by at-bat basis, but there are likely tendencies developed through a player's approach, mechanics, pitch usage, etc. that result in certain types of batted ball occuring more often than normal for that player over the course of a season
 
-More specifically, I categorize batted balls by ***Pull, Center, Oppo*** and ***Flyball, Groundball, Linedrive, Popup*** to look for wOBA vs. xwOBA differences based on where the ball was hit
-- If there are notable differences in wOBA and xwOBA based on where the ball was hit, then it implies that any individual player's actual wOBA/xwOBA discrepancy, or lack thereof, warrants further evaluation
-  
-Batters nor pitchers have total control over their type of batted balls, but there are likely tendencies developed through the player's approach, mechanics, or pitch usage that result in a certain type of batted ball occuring more often than normal for that player
-- Ultimately, this is an attempt to identify some level of skill that may be misattributed as luck
+The idea behind this analysis is that xwOBA is often used to explain that a batter or pitcher may be getting lucky or unlucky, but if there are types of batted balls that generally lead to notable differences in wOBA/xwOBA, then it may be the case that the player is not getting lucky or unlucky, instead, that is just generally how the batter hits the ball (or how the ball is generally hit against the pitcher)
+- Ultimately, this project aims to identify some level of skill that may be misattributed as luck, and identify players that exhibit this distinction
 
 ## Analysis
 It is widely understood that a *batter's* **above average sprint speed** can lead to ***outperforming*** his xwOBA and a *pitching team's* **above average defense** can lead the batter to ***underperforming*** his xwOBA 
-- Batter's sprint speed and pitching team's defense are not the factors that I am evaluating in this project
+- Batter's sprint speed and pitching team's defense are not the factors that are focused on in this project
+
+The xwOBA value used in this project comes from Statcast's 'estimated_woba_using_speedangle' column 
+  - This calculation of xwOBA is only taking into account the launch speed and the *vertical* launch angle of the batted ball
 
 Here, I look at the *horizontal* component of launch angle (spray angle) to see what xwOBA is missing by excluding it
-- The xwOBA value I am using comes from Statcast's 'estimated_woba_using_speedangle' column 
-  - This calculation of xwOBA is only taking into account the launch speed and the *vertical* launch angle of the batted ball
-- The following table shows the wOBA vs. xwOBA value for each of those 12 distinct types of batted balls
+- I calculated the spray angle of every batted ball in my dataset using Statcast's hit coordinates in the following snippet of code
+  
+  ```allbdat$spray_angle <- with(allbdat, round((atan((hc_x-125.42)/(198.27-hc_y))*180/pi*.75),1))```
+
+- The next snippet of code shows how I used each spray angle calculation, along with the handedness of the batter, to make another column titled 'hit_direction' that labels each of the batted balls as 'Pull', 'Center', or 'Oppo' 
+  
+  ```
+  allbdat <- allbdat %>%
+    mutate(hit_direction = case_when(
+           stand == "R" & spray_angle <= -15 ~ "pull",
+           stand == "L" & spray_angle >= 15 ~ "pull",
+           abs(spray_angle) < 15 ~ "center",
+           stand == "R" & spray_angle >= 15 & spray_angle <= 45 ~ "oppo",
+           stand == "L" & spray_angle <= -15 & spray_angle >= -45 ~ "oppo",
+           TRUE ~ NA
+  ))
+  ```
+ 
+#### The table below shows the wOBA vs. xwOBA value for each of the 12 distinct types of batted balls
   - 'd_wOBA' is wOBA - xwOBA
   - 'rate' is each batted ball type's frequency as a percentage
 
   ![Screenshot 2023-09-27 150552](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/0b88a4b2-5d5f-4236-9a72-b7410c3d4ac8)
 
-- This table shows that the type of batted balls that are most likely to lead to a batter outperforming their xwOBA are: ***Pulled Flyballs*** and ***Oppo Groundballs***
-  - When you see that the most popular type of batted ball is a Pulled Groundball (22.7%), whereas Oppo Groundballs are hit at about 5.5%, it makes sense why Oppo Groundballs are listed here
-    - This difference forces defenses to generally position themselves anticipating a Pulled Groundball, so when a Oppo Groundball is hit it tends to catch the defense out of position and becomes more likely to find a hole (increasing wOBA)
-  - When you see that Center Flyballs lead to a batter most *underperforming* their xwOBA, it makes sense why Pulled Flyballs lead to batter's *outperforming* their wOBA
-    - For example; If a ball is hit with 30 degree launch angle and 98 mph launch speed, it will have a *high* ***xwOBA*** based on the fact that most balls hit like that find a fence in the gap or down the line to go over for a homerun (increasing wOBA and therefore xwOBA), but when that same 30 degree/98mph Flyball is hit to Center it is more likely that there will be room for a defender to make a play (decreasing wOBA while xwOBA is unchanged)
+This table shows that the type of batted balls that are most likely to lead to a batter outperforming their xwOBA are: ***Pulled Flyballs*** and ***Oppo Groundballs***
+  - To make sense of why Oppo Groundballs are listed here, look at the most popular of the 12 batted ball types, Pulled Groundballs at 22%
+    - Oppo Groundballs are hit at much lower rate, 5.5%, this difference forces defenses to generally position themselves anticipating a Pulled Groundball, so when a Oppo Groundball is hit the defense tends to be less optimally positioned to defend them
+    - This makes the oppo groundball more likely to find a hole, which increases wOBA while the xwOBA remains similar between the 2 type of batted balls 
+  - To make sense of why Pulled Flyballs lead to the largest *positive* difference in wOBA and xwOBA, it could help to look at the type of batted ball that leads to the largest *negative* difference in wOBA and xwOBA: **Center Flyballs** 
+    - If a ball is hit with 30 degree launch angle and 98 mph launch speed, it will have a *high* ***xwOBA*** based on the fact that most balls hit 30deg/98mph are able to find a fence in the gap or down the line to go over for a homerun (increasing wOBA), but when that 30 degree/98mph Flyball is hit to Center it is more likely that there will be room for a defender to make a play (decreasing wOBA)
     - So why don't we see this effect for Oppo Flyballs? Because batters generally have more power to their pullside
- 
+      - This can be confirmed by the significantly lower xwOBA value on Oppo Flyballs in the table above
 
 
 
@@ -114,10 +133,11 @@ Here, I look at the *horizontal* component of launch angle (spray angle) to see 
 ![Screenshot 2023-10-01 005341](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/0b863bbf-c35c-4bac-9bb6-34b2ce2d7c2a)
 
 - He pulls Flyballs almost 3 times more than the league average rate
-- Another interesting note: in 2022, the wOBA value on Paredes' Oppo Groundballs underperformed the xwOBA value (negative d_wOBA value) which is contrary to the league wide trend shown in the Analysis section 
-  - But in 2023, that number rebounded back to normal rates and his overall wOBA value reflected this
+- Another interesting note: in 2022, the wOBA value on Paredes' Oppo Groundballs **underperformed** it's xwOBA value (negative d_wOBA value) which is contrary to the league wide trend shown in the table in the Analysis section 
+  - But in 2023, his wOBA against Oppo Groundballs rebounded back to normal rates and his overall wOBA value benefited from this
+    - This is a good example of a way to properly identify luck or unluck: by the wOBA/xwOBA discrepancy for a player on specific types of batted balls, not their overall wOBA/xwOBA difference
 
-#### Nolan Arenado is another prime example of a player like Paredes
+#### Nolan Arenado is another prime example of a player like Isaac Paredes
 
 #### Bo Bichette
   - His wOBA typically outperforms his xwOBA despite average foot speed
@@ -137,7 +157,7 @@ Here, I look at the *horizontal* component of launch angle (spray angle) to see 
 
   - The wOBA value for his Oppo Groundballs has plummeted from above .400 to below .300
     - It is likely that the removal of the shift in 2023 has hurt batters hitting oppo groundballs like Bo Bichette
-    - Maybe defenses were bound to make this adjustment against Bichette regardless
+    - Maybe defenses were bound to make this adjustment against Bichette because of his tendency to hit them so frequently
   - Regardless, he is an example of a player that has benefited from hitting a lot of Oppo Groundballs
  
 #### DJ LeMahieu is another great example too
@@ -213,7 +233,11 @@ Here, I look at the *horizontal* component of launch angle (spray angle) to see 
 ![Screenshot 2023-10-01 012647](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/de9c0d1d-bce1-4d92-94a7-375a54febbe1)
 
   - You can see that he simply hits way too many flyballs to center
-  - Also, his positive d_wOBA trend in 2023 can likely be attributed to the fact that he is getting lucky with his pulled groundballs
+    - Average: 11.7%
+    - Chapman: 2021: 19.9% 2022: 17.2% 2023: 16.8%
+  - Chapman's positive 'd_wOBA' trend in 2023 can likely be attributed to the fact that he is getting lucky with the wOBA against his Pulled Groundballs
+    - normal d_wOBA: .218 / .213 -> .005
+    - Chapman d_wOBA: .408 / .207 -> .201!
 
 #### Kyle Tucker is another example too
 
