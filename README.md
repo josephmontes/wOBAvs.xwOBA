@@ -114,9 +114,9 @@ This table shows that the type of batted balls that are most likely to lead to a
 ### NOTES
 - The average d_wOBA for this group is still .023
   - wOBA = .345/ xwOBA = .322
-  - The overall average d_wOBA = .012, which means that this group of batters is outperforming their xwOBA by 92% more than average!
+  - **The league-wide average d_wOBA = .012**, which means that ***this group of batters is outperforming their xwOBA by 92% more than average***
 - The average sprint speed for this group is 27.38 ft/s
-  - The overall average sprint speed in my dataset is 27.5 ft/s
+  - The league-wide average sprint speed in my dataset is 27.5 ft/s
 
 
 ### PLAYER SPOTLIGHT
@@ -136,22 +136,23 @@ This table shows that the type of batted balls that are most likely to lead to a
 ##### 2023
 ![Screenshot 2023-10-01 005341](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/0b863bbf-c35c-4bac-9bb6-34b2ce2d7c2a)
 
-- He pulls Flyballs almost 3 times more than the league average rate
+- He Pulls Flyballs almost 3 times more than the league average rate
   - League Average: 5.5%
 - Another interesting note: in 2022, the wOBA value on Paredes' Oppo Groundballs **underperformed** it's xwOBA value (d_wOBA = -0.113) which is a stark contrast to the league wide trend shown in the table in the Analysis section for Oppo Groundballs (d_wOBA = 0.165)
   - But in 2023, his wOBA against Oppo Groundballs rebounded closer to more normal rates (d_wOBA = 0.245) and his overall wOBA value also benefited from this
-    - This is a good example of a way to properly identify good or bad 'luck': by the wOBA/xwOBA difference a player experiences on ***specific types of batted balls, not their overall wOBA/xwOBA difference***
+    - This seems like a better way to identify a player that might be experiencing good or bad 'luck': by the wOBA/xwOBA difference they experiences on ***specific types of batted balls, not their overall wOBA/xwOBA difference***
 
-#### Nolan Arenado is another prime example of a player like Isaac Paredes
+#### Nolan Arenado is another prime example of a player who outperforms his xwOBA by Pulling Flyballs
 
 ### Bo Bichette
-  - His wOBA typically outperforms his xwOBA despite having average foot speed (27.7 ft/s)
-    - He pulls flyballs at such a low rate (3.5% average) that you would expect him to be someone that does not outperform his xwOBA - since pulling flyballs is the main way of doing it 
-
+  - His wOBA typically outperforms his xwOBA despite hitting Pulled Flyballs at such a low rate (3.5% average)
+    - He also possesses average foot speed (27.7 ft/s)
     
 ![Screenshot 2023-10-01 011233](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/92a29793-25a7-4420-b7f0-575571ec12e3)
 
-- But what's happening in 2023?
+- Bo Bichette is a great example of a player that has taken advantage of the xwOBA differences on Oppo Groundballs by hitting them over 2x more than the average rate
+  - Average Oppo GB% is 5.8%
+- But what's happening to his wOBA/xwOBA difference in 2023?
 
 ##### 2021
 ![Screenshot 2023-10-01 011323](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/8db5d3ec-62a4-4393-b578-e8c953878d32)
@@ -161,17 +162,17 @@ This table shows that the type of batted balls that are most likely to lead to a
 ![Screenshot 2023-10-01 011350](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/7e1c699c-16c7-4b90-a56f-6d7c6e691c41)
 
   - The wOBA value for his Oppo Groundballs has plummeted from .414 to .357 to .267
-    - It is likely that the removal of the shift in 2023 has hurt batters hitting oppo groundballs like Bo Bichette
+    - It is likely that the removal of the shift in 2023 has hurt batters that were getting by hitting Oppo Groundballs, like Bo Bichette
     - Maybe defenses were bound to make this adjustment against Bichette because of his tendency to hit them so frequently
     - Maybe Bichette is actually experiencing bad luck this year with his Oppo Groundballs (d_wOBA = .031) and is in store for a bit of a bounce back in 2024
   - Regardless, he is an example of a player that has benefited from hitting a lot of Oppo Groundballs
  
-#### DJ LeMahieu is another great example too
+#### DJ LeMahieu is another fine example of a player similar to Bo Bichette
 
 ### List of batters with >= 75th percentile Center FB rate
 - The 75th percentile Center FB% value is **17%**
 - Additionally, I filtered out batters with > 10% Pull FB% (average is 7.3%) in an attempt to avoid creating a list of batters that just hit a lot of Flyballs in general
-  - This list's aim *is* to find batters that hit a lot of Flyballs, but also, batters that hit *too many* of their Flyballs to Center 
+  - This list's aim is to find batters that hit a lot of Flyballs, but also, batters that hit *too many* of their Flyballs to Center 
 
 | Season    | Player Name        | wOBA  | xwOBA | d_wOBA | CENTER FB% | PULL FB% | OPPO GB% | Sprint Speed (ft/s) |
 |-----------|--------------------|-------|-------|--------|------------|----------|----------|---------------------|
@@ -233,14 +234,18 @@ This table shows that the type of batted balls that are most likely to lead to a
   - Muncy and Gallo's d_wOBA were about the same in each of the seasons
     - 2021 Muncy: wOBA = .386, xwOBA = .405, d_wOBA = **-.02** || 2023 Muncy: wOBA = .364, xwOBA = .384, d_wOBA = **-.02**
     - 2021 Gallo: wOBA = .351, xwOBA = .351, d_wOBA = **0** || 2022 Gallo: wOBA = .291, xwOBA = .299, d_wOBA = **-.08**
-  - Pete Alonso's season that landed him on the first list (2022) was notably better according to d_wOBA than his 2023 season
+  - Pete Alonso's season where he hit more Pulled Flyballs and less Center Flyballs (2022) was notably better (according to d_wOBA and wOBA, but not xwOBA) than his 2023 season
     - 2023 Alonso: wOBA = .360, xwOBA = .382, d_wOBA = **-.022** || 2022 Alonso: wOBA = .372, xwOBA = .358, d_wOBA = **.014**
-    - Alonso's .036 swing in d_wOBA highlights the value of pulling flyballs
+    - Alonso's -.036 change in d_wOBA, -.012 change in wOBA, and .024 change in xwOBA between his 2022 & 2023 seasons minimizes the significance of a player's overall xwOBA as it relates to their overall production
+      - Alonso is proof that actual production can be lost by a batter that hits too mamy FBs to Center despite an increase in xwOBA
       
 ### Player Spotlight
 #### Matt Chapman
   - His wOBA consistently underperforms his xwOBA despite having above average sprint speed (28.3 ft/s)
 ![Screenshot 2023-10-01 012517](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/3335e55f-0f42-456a-bfde-b6c16fd9864f)
+
+- The following tables show that, from 2021-2023, Matt Chapman hits Flyballs to Center at an above average rate
+    - Average Center FB%: 11.7%
 
 ##### 2021
 ![Screenshot 2023-10-01 012627](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/2590254a-2d01-4e7c-bcdd-9d91a49766e8)
@@ -249,110 +254,134 @@ This table shows that the type of batted balls that are most likely to lead to a
 ##### 2023
 ![Screenshot 2023-10-01 012647](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/de9c0d1d-bce1-4d92-94a7-375a54febbe1)
 
-  - These tables show that Matt Chapman hits Flyballs to Center at an above average rate
-    - Average Center FB%: 11.7%
-    - Chapman's Center FB% in 2021: **19.9%**, 2022: **17.2%**, 2023: **16.8%**
-  - Chapman's positive 'd_wOBA' trend in 2023 might be able to be attributed to the fact that he is unsustainably outperforming his wOBA on Pulled Groundballs
-    - normal d_wOBA on Pull GBs: .218 - .213 = **.005**
-    - Chapman d_wOBA: .408 - .207 = **.201!**
+  
+  - Chapman's Center FB% in 2021: **19.9%**, 2022: **17.2%**, 2023: **16.8%**
+  - Chapman's positive 'd_wOBA' trend in 2023 could be attributed to the fact that he is outperforming his xwOBA on Pulled Groundballs at an unsustainably high rate
+    - league-wide d_wOBA on Pull GBs: .218 - .213 = **.005**
+    - Chapman d_wOBA on Pull GBs in 2023: .408 - .207 = **.201!**
 
-#### Kyle Tucker is another example too
+#### Kyle Tucker is another example of a player similar to Chapman's batted ball profile
 
 
 ## PITCHERS
 ### List of pitchers with >= 75th Percentile CENTER FB rate
+- The 75th Percentile value for pitchers was 13.8%
+- Additionally, I filtered out pitchers with an above average Pull FB% (less than 6.8%)
 
-| game_year.x |   player_name   |  woba  | xwoba | d_woba | sfb_pct | pfb_pct | ogb_pct | team_name.x | outs_above_average |
-|:-----------:|:---------------:|:------:|:-----:|:------:|:-------:|:-------:|:-------:|:-----------:|:------------------:|
-|    2022     |    Max Scherzer    |  0.258 | 0.263 | -0.004 |   17.2  |   4.3   |   4.0   |     NYM     |         11         |
-|    2022     |  Tyler Alexander  |  0.337 | 0.347 | -0.010 |   17.1  |   2.3   |   5.2   |     DET     |         12         |
-|    2022     |  Bailey Falter    |  0.336 | 0.327 |  0.010 |   16.7  |   4.9   |   5.7   |     PHI     |        -34         |
-|    2022     | Kutter Crawford  |  0.352 | 0.332 |  0.021 |   16.4  |   6.7   |   3.1   |     BOS     |        -13         |
-|    2022     |   Tyler Mahle    |  0.308 | 0.284 |  0.025 |   16.3  |   6.1   |   6.5   |     CIN     |        -22         |
-|    2021     |    Luis Garcia    |  0.303 | 0.302 |  0.001 |   15.7  |   5.9   |   6.1   |     HOU     |         36         |
-|    2022     |    Yu Darvish    |  0.267 | 0.296 | -0.028 |   15.6  |   6.2   |   5.5   |     SD      |         33         |
-|    2022     | Justin Verlander  |  0.231 | 0.255 | -0.024 |   15.3  |   4.7   |   4.0   |     HOU     |         36         |
-|    2022     |    Cole Irvin    |  0.313 | 0.324 | -0.011 |   15.3  |   5.7   |   5.4   |     OAK     |        -5          |
-|    2021     |   Gerrit Cole    |  0.290 | 0.277 |  0.012 |   15.3  |   6.4   |   4.3   |     NYY     |        -21         |
-|    2022     |   Chris Flexen   |  0.326 | 0.337 | -0.011 |   15.1  |   6.0   |   5.1   |     SEA     |         2          |
-|    2022     |   Blake Snell    |  0.301 | 0.289 |  0.012 |   15.1  |   4.0   |   6.8   |     SD      |         33         |
-|    2022     | Triston McKenzie  |  0.271 | 0.289 | -0.018 |   14.8  |   6.6   |   5.0   |     CLE     |         23         |
-|    2022     |    Zach Davies    |  0.322 | 0.324 | -0.002 |   14.7  |   6.6   |   6.6   |     AZ      |         44         |
-|    2021     |   Chris Flexen   |  0.319 | 0.315 |  0.003 |   14.6  |   4.8   |   5.5   |     SEA     |        -5          |
-|    2022     |    José Suarez    |  0.314 | 0.301 |  0.013 |   14.5  |   4.8   |   4.8   |     LAA     |         0          |
-|    2022     |   Johnny Cueto    |  0.316 | 0.309 |  0.006 |   14.5  |   5.4   |   5.6   |     CWS     |        -17         |
-|    2021     |   Kevin Gausman   |  0.281 | 0.288 | -0.007 |   14.4  |   5.8   |   9.3   |     SF      |         29         |
-|    2022     |   Austin Voth     |  0.311 | 0.315 | -0.003 |   14.4  |   6.2   |   4.1   |     BAL     |         3          |
-|    2022     | Trevor Williams   |  0.320 | 0.299 |  0.021 |   14.3  |   5.3   |   3.0   |     NYM     |         11         |
-|    2022     |   Kyle Freeland   |  0.354 | 0.340 |  0.014 |   14.1  |   5.8   |   4.4   |     COL     |        -2          |
-|    2022     |  Jameson Taillon  |  0.315 | 0.317 | -0.001 |   14.0  |   5.9   |   4.1   |     NYY     |         20         |
-|    2021     |   Taijuan Walker  |  0.314 | 0.324 | -0.011 |   14.0  |   4.1   |   6.1   |     NYM     |         24         |
-|    2022     | Jonathan Heasley  |  0.373 | 0.361 |  0.013 |   14.0  |   6.4   |   3.5   |     KC      |         1          |
-|    2021     |    Jordan Lyles   |  0.360 | 0.348 |  0.012 |   13.9  |   6.3   |   3.6   |     TEX     |         27         |
-|    2021     |     Julio Urías   |  0.274 | 0.269 |  0.005 |   13.8  |   5.4   |   4.0   |     LAD     |        -18         |
+| Season      |   Player Name   |  wOBA  | xwOBA | d_wOBA | CENTER FB% | PULL FB% | OPPO GB% |   Team   |        OAA         |
+|:-----------:|:---------------:|:------:|:-----:|:------:|:--------:|:--------:|:-------:|:-----------:|:------------------:|
+|    2022     |  Max Scherzer   |  0.258 | 0.263 | -0.004 |   17.2%  |   4.3%   |   4.0%   |     NYM     |         11         |
+|    2022     |  Tyler Alexander|  0.337 | 0.347 | -0.010 |   17.1%  |   2.3%   |   5.2%   |     DET     |         12         |
+|    2022     |  Bailey Falter  |  0.336 | 0.327 |  0.010 |   16.7%  |   4.9%   |   5.7%   |     PHI     |        -34         |
+|    2022     | Kutter Crawford |  0.352 | 0.332 |  0.021 |   16.4%  |   6.7%   |   3.1%   |     BOS     |        -13         |
+|    2022     |   Tyler Mahle   |  0.308 | 0.284 |  0.025 |   16.3%  |   6.1%   |   6.5%   |     CIN     |        -22         |
+|    2021     |    Luis Garcia  |  0.303 | 0.302 |  0.001 |   15.7%  |   5.9%   |   6.1%   |     HOU     |         36         |
+|    2022     |    Yu Darvish   |  0.267 | 0.296 | -0.028 |   15.6%  |   6.2%   |   5.5%   |     SD      |         33         |
+|    2022     | Justin Verlander|  0.231 | 0.255 | -0.024 |   15.3%  |   4.7%   |   4.0%   |     HOU     |         36         |
+|    2022     |    Cole Irvin   |  0.313 | 0.324 | -0.011 |   15.3%  |   5.7%   |   5.4%   |     OAK     |        -5          |
+|    2021     |   Gerrit Cole   |  0.290 | 0.277 |  0.012 |   15.3%  |   6.4%   |   4.3%   |     NYY     |        -21         |
+|    2022     |   Chris Flexen  |  0.326 | 0.337 | -0.011 |   15.1%  |   6.0%   |   5.1%   |     SEA     |         2          |
+|    2022     |   Blake Snell   |  0.301 | 0.289 |  0.012 |   15.1%  |   4.0%   |   6.8%   |     SD      |         33         |
+|    2022     | Triston McKenzie|  0.271 | 0.289 | -0.018 |   14.8%  |   6.6%   |   5.0%   |     CLE     |         23         |
+|    2022     |    Zach Davies  |  0.322 | 0.324 | -0.002 |   14.7%  |   6.6%   |   6.6%   |     AZ      |         44         |
+|    2021     |   Chris Flexen  |  0.319 | 0.315 |  0.003 |   14.6%  |   4.8%   |   5.5%   |     SEA     |        -5          |
+|    2022     |    José Suarez  |  0.314 | 0.301 |  0.013 |   14.5%  |   4.8%   |   4.8%   |     LAA     |         0          |
+|    2022     |   Johnny Cueto  |  0.316 | 0.309 |  0.006 |   14.5%  |   5.4%   |   5.6%   |     CWS     |        -17         |
+|    2021     |   Kevin Gausman |  0.281 | 0.288 | -0.007 |   14.4%  |   5.8%   |   9.3%   |     SF      |         29         |
+|    2022     |   Austin Voth   |  0.311 | 0.315 | -0.003 |   14.4%  |   6.2%   |   4.1%   |     BAL     |         3          |
+|    2022     | Trevor Williams |  0.320 | 0.299 |  0.021 |   14.3%  |   5.3%   |   3.0%   |     NYM     |         11         |
+|    2022     |   Kyle Freeland |  0.354 | 0.340 |  0.014 |   14.1%  |   5.8%   |   4.4%   |     COL     |        -2          |
+|    2022     |  Jameson Taillon|  0.315 | 0.317 | -0.001 |   14.0%  |   5.9%   |   4.1%   |     NYY     |         20         |
+|    2021     |   Taijuan Walker|  0.314 | 0.324 | -0.011 |   14.0%  |   4.1%   |   6.1%   |     NYM     |         24         |
+|    2022     | Jonathan Heasley|  0.373 | 0.361 |  0.013 |   14.0%  |   6.4%   |   3.5%   |     KC      |         1          |
+|    2021     |    Jordan Lyles |  0.360 | 0.348 |  0.012 |   13.9%  |   6.3%   |   3.6%   |     TEX     |         27         |
+|    2021     |     Julio Urías |  0.274 | 0.269 |  0.005 |   13.8%  |   5.4%   |   4.0%   |     LAD     |        -18         |
 
 ### NOTES
-- d_wOBA
-- Average OAA
+- The d_wOBA for this group of pitchers is 0.001
+  - The average d_wOBA for pitchers in general is 0.007
+- The average OAA value for this group of pitchers: 7 OAA
+  - league-wide OAA: 0 OAA
 
 ### PLAYER SPOTLIGHT
 
-#### Scherzer
-#### Flexen
+#### Max Scherzer
+- Max Scherzer has been able to outperform his xwOBA consistently, likely having to do with his ability to produce a lot of Center FB
+![Screenshot 2023-10-09 140722](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/f97ffe25-269f-4562-a427-a4bc6361ed16)
+
+- What is happening in 2023?
+##### 2021
+![Screenshot 2023-10-09 140752](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/57e5c113-7a0c-42b1-8fad-03c67e2e895a)
+##### 2022
+![Screenshot 2023-10-09 140808](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/5aa4c9ce-7f6b-4fa1-8c6e-fab363cba944)
+##### 2023
+![Screenshot 2023-10-09 140819](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/6ecc31c8-e761-4872-a8b3-007158535478)
+
+- In 2023, the wOBA against his Center FBs has drastically increased:
+  - 2021: .269, 2022: .278, 2023: .477
+    - As an older pitcher, it has to be concerning, especially when the xwOBA value on Center FB's is also increasing
+    - This incidates that he is getting hit much harder in general, and his FB to Center are not doing the trick anymore
+      - HR/FB rate year by year: 2021: 17.3, 2022: 11.8%, 2023: 21.5%
+        - Average HR/FB%: 12.7% (from FanGraphs)
+      - Hard Hit % year by year: 2021: 34.3%, 2022: 33.9%, 2023: 36.9%
+        - Average Hard Hit%: 36.1% (from Baseball Savant)
+          
+#### Chris Flexen is another good example of a pitcher that invokes a lot of Center FB's
 
 ### List of pitchers with >= 75th Percentile PFB+OGB rate
-| game_year.x | player_name            | woba  | xwoba | d_woba | g_plus | pfb_pct | ogb_pct | sfb_pct | team_name.x | outs_above_average |
-|-------------|------------------------|-------|-------|--------|--------|---------|---------|---------|-------------|--------------------|
-| 2022        | Andre Pallante        | 0.321 | 0.298 | 0.023  | 19.4   | 3.2     | 16.2    | 3.2     | STL         | 26                 |
-| 2022        | Brock Burke            | 0.281 | 0.280 | 0.001  | 17.7   | 7.4     | 10.2    | 12.6    | TEX         | -5                 |
-| 2022        | Ryan Yarbrough        | 0.352 | 0.314 | 0.039  | 17.6   | 8.6     | 9.0     | 12.6    | TB          | 2                  |
-| 2022        | Josiah Gray            | 0.361 | 0.327 | 0.034  | 15.9   | 10.7    | 5.1     | 15.4    | WSH         | -50                |
-| 2022        | Antonio Senzatela     | 0.392 | 0.348 | 0.043  | 15.7   | 4.2     | 11.5    | 5.4     | COL         | -2                 |
-| 2022        | Chris Bassitt          | 0.305 | 0.292 | 0.013  | 15.2   | 6.5     | 8.6     | 11.1    | NYM         | 11                 |
-| 2021        | Kevin Gausman         | 0.281 | 0.288 | -0.007 | 15.1   | 5.8     | 9.3     | 14.4    | SF          | 29                 |
-| 2022        | Gerrit Cole           | 0.288 | 0.285 | 0.003  | 15.0   | 7.6     | 7.4     | 12.9    | NYY         | 20                 |
-| 2022        | Cristian Javier       | 0.255 | 0.244 | 0.011  | 14.9   | 11.6    | 3.4     | 14.6    | HOU         | 36                 |
-| 2022        | Michael Lorenzen      | 0.310 | 0.310 | 0.000  | 14.9   | 4.8     | 10.0    | 10.0    | LAA         | 0                  |
-| 2022        | Caleb Smith           | 0.329 | 0.297 | 0.033  | 14.6   | 11.7    | 2.9     | 16.6    | AZ          | 44                 |
-| 2022        | Jon Gray              | 0.300 | 0.297 | 0.003  | 14.5   | 5.5     | 9.0     | 12.1    | TEX         | -5                 |
-| 2022        | Jordan Montgomery     | 0.303 | 0.314 | -0.011 | 14.5   | 6.2     | 8.3     | 9.7     | NYY         | 20                 |
-| 2022        | Zach Thompson         | 0.359 | 0.341 | 0.018  | 14.5   | 8.1     | 6.4     | 7.6     | PIT         | -22                |
-| 2022        | Hunter Greene         | 0.335 | 0.323 | 0.011  | 14.4   | 10.7    | 3.8     | 15.4    | CIN         | -22                |
-| 2022        | Carlos Rodón          | 0.263 | 0.254 | 0.008  | 14.0   | 7.0     | 7.0     | 13.3    | SF          | -34                |
-| 2022        | Taylor Hearn          | 0.346 | 0.338 | 0.008  | 14.0   | 7.6     | 6.4     | 10.7    | TEX         | -5                 |
-| 2022        | Aaron Ashby           | 0.349 | 0.307 | 0.042  | 14.0   | 4.7     | 9.3     | 7.3     | MIL         | 3                  |
-| 2022        | Roansy Contreras      | 0.325 | 0.328 | -0.003 | 13.9   | 9.5     | 4.4     | 14.2    | PIT         | -22                |
-| 2022        | Madison Bumgarner     | 0.360 | 0.349 | 0.011  | 13.9   | 9.8     | 4.1     | 11.3    | AZ          | 44                 |
-| 2022        | Paolo Espino          | 0.355 | 0.335 | 0.020  | 13.7   | 8.5     | 5.2     | 14.5    | WSH         | -50                |
-| 2022        | Nestor Cortes         | 0.247 | 0.256 | -0.009 | 13.7   | 8.3     | 5.4     | 12.7    | NYY         | 20                 |
-| 2022        | Patrick Sandoval      | 0.308 | 0.306 | 0.002  | 13.7   | 5.6     | 8.1     | 10.5    | LAA         | 0                  |
-| 2022        | Jeffrey Springs       | 0.285 | 0.283 | 0.002  | 13.6   | 5.9     | 7.8     | 12.3    | TB          | 2                  |
-| 2022        | Glenn Otto            | 0.333 | 0.343 | -0.011 | 13.6   | 6.7     | 6.9     | 10.1    | TEX         | -5                 |
-| 2022        | Luis Severino         | 0.274 | 0.261 | 0.013  | 13.6   | 6.8     | 6.8     | 9.1     | NYY         | 20                 |
-| 2022        | Ranger Suárez         | 0.322 | 0.298 | 0.024  | 13.6   | 3.5     | 10.1    | 6.8     | PHI         | -34                |
-| 2022        | Austin Gomber         | 0.357 | 0.326 | 0.032  | 13.5   | 8.6     | 4.9     | 14.7    | COL         | -2                 |
-| 2022        | George Kirby          | 0.307 | 0.286 | 0.021  | 13.5   | 4.7     | 8.9     | 12.8    | SEA         | 2                  |
-| 2022        | Shohei Ohtani         | 0.264 | 0.260 | 0.004  | 13.5   | 6.8     | 6.8     | 11.5    | LAA         | 0                  |
-| 2022        | Michael Kopech        | 0.296 | 0.312 | -0.016 | 13.4   | 9.2     | 4.2     | 15.8    | CWS         | -17                |
-| 2022        | Dylan Bundy           | 0.333 | 0.323 | 0.010  | 13.4   | 10.5    | 2.9     | 12.6    | MIN         | -16                |
-| 2022        | Zach Davies           | 0.322 | 0.324 | -0.002 | 13.3   | 6.6     | 6.6     | 14.7    | AZ          | 44                 |
-| 2022        | Luis Garcia           | 0.299 | 0.294 | 0.004  | 13.3   | 8.0     | 5.3     | 13.1    | HOU         | 36                 |
-| 2021        | Patrick Corbin        | 0.372 | 0.354 | 0.018  | 13.3   | 5.7     | 7.6     | 9.4     | WSH         | -25                |
-| 2022        | Kevin Gausman         | 0.310 | 0.285 | 0.025  | 13.2   | 3.8     | 9.5     | 13.2    | TOR         | 6                  |
-| 2022        | Brady Singer          | 0.301 | 0.306 | -0.005 | 13.2   | 3.7     | 9.5     | 11.8    | KC          | 1                  |
-| 2022        | Dylan Cease           | 0.268 | 0.258 | 0.010  | 13.1   | 7.3     | 5.7     | 14.4    | CWS         | -17                |
-| 2022        | Freddy Peralta        | 0.269 | 0.260 | 0.009  | 13.1   | 8.0     | 5.2     | 13.6    | MIL         | 3                  |
-| 2022        | Dean Kremer           | 0.324 | 0.333 | -0.009 | 13.1   | 6.8     | 6.3     | 10.6    | BAL         | 3                  |
-| 2021        | Zack Greinke          | 0.317 | 0.316 | 0.001  | 13.1   | 6.1     | 7.0     | 9.8     | HOU         | 36                 |
-| 2021        | Max Fried             | 0.287 | 0.286 | 0.002  | 13.1   | 4.6     | 8.5     | 9.2     | ATL         | 9                  |
-| 2022        | Joe Ryan              | 0.298 | 0.293 | 0.005  | 13.0   | 7.8     | 5.2     | 17.4    | MIN         | -16                |
-| 2022        | Tyler Wells           | 0.307 | 0.300 | 0.006  | 13.0   | 7.6     | 5.5     | 14.2    | BAL         | 3                  |
-| 2022        | Ryan Feltner          | 0.346 | 0.341 | 0.005  | 13.0   | 7.4     | 5.7     | 12.4    | COL         | -2                 |
-| 2022        | Luis Castillo         | 0.278 | 0.279 | -0.001 | 13.0   | 5.8     | 7.2     | 9.0     | CIN         | -22                |
+| Season      | Player Name           | wOBA  | xwOBA | d_wOBA | PFB+OGB%| PULL FB% | OPPO GB% |CENTER FB% | Team      | OAA                |
+|-------------|-----------------------|-------|-------|--------|---------|----------|----------|----------|-------------|--------------------|
+| 2022        | Andre Pallante        | 0.321 | 0.298 | 0.023  | 19.4%   | 3.2%     | 16.2%    | 3.2%     | STL         | 26                 |
+| 2022        | Brock Burke           | 0.281 | 0.280 | 0.001  | 17.7%   | 7.4%     | 10.2%    | 12.6%    | TEX         | -5                 |
+| 2022        | Ryan Yarbrough        | 0.352 | 0.314 | 0.039  | 17.6%   | 8.6%     | 9.0%     | 12.6%    | TB          | 2                  |
+| 2022        | Josiah Gray           | 0.361 | 0.327 | 0.034  | 15.9%   | 10.7%    | 5.1%     | 15.4%    | WSH         | -50                |
+| 2022        | Antonio Senzatela     | 0.392 | 0.348 | 0.043  | 15.7%   | 4.2%     | 11.5%    | 5.4%     | COL         | -2                 |
+| 2022        | Chris Bassitt         | 0.305 | 0.292 | 0.013  | 15.2%   | 6.5%     | 8.6%     | 11.1%    | NYM         | 11                 |
+| 2021        | Kevin Gausman         | 0.281 | 0.288 | -0.007 | 15.1%   | 5.8%     | 9.3%     | 14.4%    | SF          | 29                 |
+| 2022        | Gerrit Cole           | 0.288 | 0.285 | 0.003  | 15.0%   | 7.6%     | 7.4%     | 12.9%    | NYY         | 20                 |
+| 2022        | Cristian Javier       | 0.255 | 0.244 | 0.011  | 14.9%   | 11.6%    | 3.4%     | 14.6%    | HOU         | 36                 |
+| 2022        | Michael Lorenzen      | 0.310 | 0.310 | 0.000  | 14.9%   | 4.8%     | 10.0%    | 10.0%    | LAA         | 0                  |
+| 2022        | Caleb Smith           | 0.329 | 0.297 | 0.033  | 14.6%   | 11.7%    | 2.9%     | 16.6%    | AZ          | 44                 |
+| 2022        | Jon Gray              | 0.300 | 0.297 | 0.003  | 14.5%   | 5.5%     | 9.0%     | 12.1%    | TEX         | -5                 |
+| 2022        | Jordan Montgomery     | 0.303 | 0.314 | -0.011 | 14.5%   | 6.2%     | 8.3%     | 9.7%     | NYY         | 20                 |
+| 2022        | Zach Thompson         | 0.359 | 0.341 | 0.018  | 14.5%   | 8.1%     | 6.4%     | 7.6%     | PIT         | -22                |
+| 2022        | Hunter Greene         | 0.335 | 0.323 | 0.011  | 14.4%   | 10.7%    | 3.8%     | 15.4%    | CIN         | -22                |
+| 2022        | Carlos Rodón          | 0.263 | 0.254 | 0.008  | 14.0%   | 7.0%     | 7.0%     | 13.3%    | SF          | -34                |
+| 2022        | Taylor Hearn          | 0.346 | 0.338 | 0.008  | 14.0%   | 7.6%     | 6.4%     | 10.7%    | TEX         | -5                 |
+| 2022        | Aaron Ashby           | 0.349 | 0.307 | 0.042  | 14.0%   | 4.7%     | 9.3%     | 7.3%     | MIL         | 3                  |
+| 2022        | Roansy Contreras      | 0.325 | 0.328 | -0.003 | 13.9%   | 9.5%     | 4.4%     | 14.2%    | PIT         | -22                |
+| 2022        | Madison Bumgarner     | 0.360 | 0.349 | 0.011  | 13.9%   | 9.8%     | 4.1%     | 11.3%    | AZ          | 44                 |
+| 2022        | Paolo Espino          | 0.355 | 0.335 | 0.020  | 13.7%   | 8.5%     | 5.2%     | 14.5%    | WSH         | -50                |
+| 2022        | Nestor Cortes         | 0.247 | 0.256 | -0.009 | 13.7%   | 8.3%     | 5.4%     | 12.7%    | NYY         | 20                 |
+| 2022        | Patrick Sandoval      | 0.308 | 0.306 | 0.002  | 13.7%   | 5.6%     | 8.1%     | 10.5%    | LAA         | 0                  |
+| 2022        | Jeffrey Springs       | 0.285 | 0.283 | 0.002  | 13.6%   | 5.9%     | 7.8%     | 12.3%    | TB          | 2                  |
+| 2022        | Glenn Otto            | 0.333 | 0.343 | -0.011 | 13.6%   | 6.7%     | 6.9%     | 10.1%    | TEX         | -5                 |
+| 2022        | Luis Severino         | 0.274 | 0.261 | 0.013  | 13.6%   | 6.8%     | 6.8%     | 9.1%     | NYY         | 20                 |
+| 2022        | Ranger Suárez         | 0.322 | 0.298 | 0.024  | 13.6%   | 3.5%     | 10.1%    | 6.8%     | PHI         | -34                |
+| 2022        | Austin Gomber         | 0.357 | 0.326 | 0.032  | 13.5%   | 8.6%     | 4.9%     | 14.7%    | COL         | -2                 |
+| 2022        | George Kirby          | 0.307 | 0.286 | 0.021  | 13.5%   | 4.7%     | 8.9%     | 12.8%    | SEA         | 2                  |
+| 2022        | Shohei Ohtani         | 0.264 | 0.260 | 0.004  | 13.5%   | 6.8%     | 6.8%     | 11.5%    | LAA         | 0                  |
+| 2022        | Michael Kopech        | 0.296 | 0.312 | -0.016 | 13.4%   | 9.2%     | 4.2%     | 15.8%    | CWS         | -17                |
+| 2022        | Dylan Bundy           | 0.333 | 0.323 | 0.010  | 13.4%   | 10.5%    | 2.9%     | 12.6%    | MIN         | -16                |
+| 2022        | Zach Davies           | 0.322 | 0.324 | -0.002 | 13.3%   | 6.6%     | 6.6%     | 14.7%    | AZ          | 44                 |
+| 2022        | Luis Garcia           | 0.299 | 0.294 | 0.004  | 13.3%   | 8.0%     | 5.3%     | 13.1%    | HOU         | 36                 |
+| 2021        | Patrick Corbin        | 0.372 | 0.354 | 0.018  | 13.3%   | 5.7%     | 7.6%     | 9.4%     | WSH         | -25                |
+| 2022        | Kevin Gausman         | 0.310 | 0.285 | 0.025  | 13.2%   | 3.8%     | 9.5%     | 13.2%    | TOR         | 6                  |
+| 2022        | Brady Singer          | 0.301 | 0.306 | -0.005 | 13.2%   | 3.7%     | 9.5%     | 11.8%    | KC          | 1                  |
+| 2022        | Dylan Cease           | 0.268 | 0.258 | 0.010  | 13.1%   | 7.3%     | 5.7%     | 14.4%    | CWS         | -17                |
+| 2022        | Freddy Peralta        | 0.269 | 0.260 | 0.009  | 13.1%   | 8.0%     | 5.2%     | 13.6%    | MIL         | 3                  |
+| 2022        | Dean Kremer           | 0.324 | 0.333 | -0.009 | 13.1%   | 6.8%     | 6.3%     | 10.6%    | BAL         | 3                  |
+| 2021        | Zack Greinke          | 0.317 | 0.316 | 0.001  | 13.1%   | 6.1%     | 7.0%     | 9.8%     | HOU         | 36                 |
+| 2021        | Max Fried             | 0.287 | 0.286 | 0.002  | 13.1%   | 4.6%     | 8.5%     | 9.2%     | ATL         | 9                  |
+| 2022        | Joe Ryan              | 0.298 | 0.293 | 0.005  | 13.0%   | 7.8%     | 5.2%     | 17.4%    | MIN         | -16                |
+| 2022        | Tyler Wells           | 0.307 | 0.300 | 0.006  | 13.0%   | 7.6%     | 5.5%     | 14.2%    | BAL         | 3                  |
+| 2022        | Ryan Feltner          | 0.346 | 0.341 | 0.005  | 13.0%   | 7.4%     | 5.7%     | 12.4%    | COL         | -2                 |
+| 2022        | Luis Castillo         | 0.278 | 0.279 | -0.001 | 13.0%   | 5.8%     | 7.2%     | 9.0%     | CIN         | -22                |
 
 #### NOTES
-- d_woba
-- OAA
+- d_woba: 0.010
+  - above average
+- OAA: 1
 
 #### PLAYER SPOTLIGHT
 
