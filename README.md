@@ -1,9 +1,10 @@
-# Analyzing wOBA vs. xwOBA differences for Batted Ball Types
+# Analyzing wOBA vs. xwOBA differences by Batted Ball Types
 ## Intro
 
 In this baseball project, I use Statcast pitch-by-pitch data from 2019 to 2023 in RStudio to examine the types of batted balls that lead to a player's wOBA outperforming their xwOBA
-- More specifically, I categorize batted balls by ***Pull, Center, Oppo*** and ***Flyball, Groundball, Linedrive, Popup*** in an attempt to identify wOBA vs. xwOBA differences based on *where* the ball was hit
-- If there are notable differences in the league-wide wOBA and xwOBA based on where the ball was hit, then it implies that any individual player's actual wOBA/xwOBA discrepancy, or lack thereof, warrants further evaluation
+- More specifically, I categorize each batted ball into 1 of 12 different groups by using the following 2 characteristics: horizontal launch angle component - ***Pull, Center, Oppo*** and vertical launch angle component - ***Flyball, Groundball, Linedrive, Popup*** in an attempt to identify wOBA vs. xwOBA differences by batted ball type
+  - Ex: Pull Flyball, Oppo Groundball, Center Linedrive, etc.
+- If there are notable differences in the league-wide wOBA and xwOBA based on this categorization, then any individual player's actual wOBA/xwOBA discrepancy, or lack thereof, warrants further evaluation
 - I am not implying that batters or pitchers have complete control over the type of batted balls that occur on an at-bat by at-bat basis, but there are likely tendencies developed through a player's approach, mechanics, pitch usage, etc. that result in certain types of batted ball occuring more often than normal for any given player over the course of a season (especially for batters)
 
 The motivation for this analysis is that xwOBA is often used to explain that a player may be experiencing good or bad 'luck', but if there are specific types of batted balls that generally lead to notable differences in wOBA vs. xwOBA, then it is likely that a player's overall wOBA/xwOBA difference is less about luck and more about the way that player hits the ball, or how it is hit against them
@@ -50,7 +51,7 @@ This table shows that the type of batted balls that are most likely to lead to a
       - This can be confirmed by the significantly lower xwOBA value on Oppo Flyballs compared to Pull Flyballs in the table above
   - To understand why **Oppo Groundballs** are listed here, it could help to look at the most frequent of the 12 batted ball types, **Pulled Groundballs** at 22%
     - Oppo Groundballs are hit at much lower rate, 5.5%, this difference forces defenses to generally position themselves anticipating a Pulled Groundball, so when a Oppo Groundball is hit the defense tends to be less optimally positioned to defend it
-    - This makes the oppo groundball more likely to find a hole, which increases wOBA while the xwOBA remains similar between the 2 type of batted balls 
+    - This makes the Oppo Groundball more likely to find a hole, which increases wOBA while the xwOBA remains similar between the 2 type of batted balls 
  
 
 # Players
@@ -115,8 +116,9 @@ This table shows that the type of batted balls that are most likely to lead to a
 - The average d_wOBA for this group is .023
   - wOBA = .345/ xwOBA = .322
   - **The average d_wOBA for qualified batting seasons = .012**, which means that ***this group of batters is outperforming their xwOBA by 92% more than average***
-- The average sprint speed for this group is 27.38 ft/s
-  - The league-wide average sprint speed in my dataset is 27.5 ft/s
+- The average top sprint speed for this group is 27.38 ft/s
+  - The overall average top sprint speed in my dataset is 27.5 ft/s
+  - This Sprint Speed information comes from Baseball Savant's Sprint Speed Leaderboard that I exported as a CSV and combined in R
 - There are 45 different batting seasons listed
   - There is a fairly even number of Pull FB to Oppo GB batting seasons on this list: 24 to 21
 
@@ -267,8 +269,8 @@ This table shows that the type of batted balls that are most likely to lead to a
 
 ## PITCHERS
 ### List of pitchers with >= 75th Percentile CENTER FB%
-- The 75th Percentile value for pitchers was 13.8%
-- Additionally, I filtered out pitchers with an above average Pull FB% (less than 6.8%)
+- The 75th Percentile CENTER FB% value for qualified pitchers is 13.8%
+- Additionally, I filtered out pitchers with an above average Pull FB% (above 6.8%)
 
 | Season      |   Player Name   |  wOBA  | xwOBA | d_wOBA | CENTER FB% | PULL FB% | OPPO GB% |   Team   |        OAA         |
 |:-----------:|:---------------:|:------:|:-----:|:------:|:--------:|:--------:|:-------:|:-----------:|:------------------:|
@@ -303,15 +305,20 @@ This table shows that the type of batted balls that are most likely to lead to a
 - The average d_wOBA for this group of pitching seasons is 0.001
   - This is 86% below average
   - The average d_wOBA for qualified pitchers is 0.007
-- The average OAA value for this group of pitchers: 7 OAA
+- The average OAA value for this group of pitchers is 7 OAA
   - league-wide OAA: 0 OAA
-- I believe that pitchers have less control than batters do over the types of batted balls they encounter
-  - Especially when we look at Pull/Center/Oppo Splits
+  - OAA information comes from Baseball Savant's Leaderboard
+- I believe that its worth noting here that pitchers likely have less control than batters do over the types of batted balls they encounter
+  - This makes logical sense since pitchers do not bat the balls
+  - Statistical evidence for this claim can be found in the d_wOBA for qualified pitchers being .007 whereas for batters its .012
+    - This indicates that batters might have an easier time leveraging the types of batted balls they hit in their favor
+    - If it generally favored pitchers, then the average d_wOBA for qualified pitchers would be negative or even closer to 0.00
+  
 
 ### PLAYER SPOTLIGHT
 
-#### Max Scherzer
-- Max Scherzer has been able to outperform his xwOBA consistently, likely having to do with his ability to produce a lot of Center FB
+### Max Scherzer
+- Max Scherzer has been able to outperform his xwOBA consistently, likely having to do with the fact that he has invoked a lot of Center FBs
 ![Screenshot 2023-10-09 140722](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/f97ffe25-269f-4562-a427-a4bc6361ed16)
 
 - What is happening in 2023?
@@ -324,14 +331,14 @@ This table shows that the type of batted balls that are most likely to lead to a
 
 - In 2023, the wOBA against his Center FBs has drastically increased:
   - 2021: .269, 2022: .278, 2023: .477
-    - As an older pitcher, it has to be concerning, especially when the xwOBA value on Center FB's is also increasing
-    - This incidates that he is getting hit much harder in general, and his FB to Center are not doing the trick anymore
-      - HR/FB rate year by year: 2021: 17.3, 2022: 11.8%, 2023: 21.5%
+    - As an older pitcher especially, it has to be concerning because the xwOBA value on Center FB's is also increasing
+    - This incidates that he is getting hit much harder in general, and his FBs to Center are not doing the trick anymore
+      - HR/FB% vs. Scherzer year by year: 2021: 17.3%, 2022: 11.8%, 2023: 21.5%
         - Average HR/FB%: 12.7% (from FanGraphs)
-      - Hard Hit % year by year: 2021: 34.3%, 2022: 33.9%, 2023: 36.9%
+      - Hard Hit% year by year: 2021: 34.3%, 2022: 33.9%, 2023: 36.9%
         - Average Hard Hit%: 36.1% (from Baseball Savant)
           
-#### Chris Flexen is another good example of a pitcher that invokes a lot of Center FB's
+#### Chris Flexen is another good example of a pitcher that invokes a lot of Center FBs
 
 ### List of pitchers with >= 75th Percentile PFB+OGB%
 | Season      | Player Name           | wOBA  | xwOBA | d_wOBA | PFB+OGB%| PULL FB% | OPPO GB% |CENTER FB% | Team      | OAA                |
@@ -384,19 +391,19 @@ This table shows that the type of batted balls that are most likely to lead to a
 | 2022        | Luis Castillo         | 0.278 | 0.279 | -0.001 | 13.0%   | 5.8%     | 7.2%     | 9.0%     | CIN         | -22                |
 
 ### NOTES
-- d_woba: 0.010
-  - above average
-- OAA: 1
+- The average d_wOBA for this group of pitching seasons is 0.010
+  - This 46% above average
+- The average OAA value for this group of pitchers is 1
 
 ### PLAYER SPOTLIGHT
 
-#### Josiah Gray
+### Josiah Gray
 - Josiah Gray is an example of a pitcher that has given up a lot of Pull FBs in his short career
 - The following table shows the wOBA vs. xwOBA trend for the first few years of Josiah Gray's career
   
 ![Screenshot 2023-10-10 133713](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/e8215ee7-3040-46df-8607-a759a7bb2470)
 
-- He was unqualified in 2021, but it is still important to note that he was being hit exceptionally hard according to wOBA, but not as hard according to xwOBA
+- He was unqualified in 2021, but it is still important to note that he was being hit exceptionally hard according to wOBA and not as hard according to xwOBA
 - In 2023, his wOBA / xwOBA difference reverted back to normal rates, what happened?
 
 ##### 2021
@@ -408,15 +415,15 @@ This table shows that the type of batted balls that are most likely to lead to a
 ##### 2023
 ![Screenshot 2023-10-10 134355](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/57725a17-2d1f-47a9-9fa6-452a5b4689ae)
 
-- In 2023, his Pull FB% has reverted closer to the league-average rate of 5.5% (6.5% in 2023), this is a significant shift from his previous tendency to surrender Pull FBs at a rate almost twice as much as the average, 10.7% in 2021 and 9.5% in 2022
+- In 2023, his Pull FB% is closer to the league-average rate of 5.5% (6.5% in 2023), this is a significant shift from his previous tendency to surrender Pull FBs at a rate almost twice as much as the average, 10.7% in 2021 and 9.5% in 2022
 - I believe that this progression for Gray coincides with a change in his pitch mix in 2023, in 2021 and 2022 he was a very 4-Seam heavy pitcher
   - 4-Seam Fastball Usage by season: 2021: 51%, 2022: 39%, 2023: 17%
   - In 2023, he throws his Slider more than any other pitch (25%), as well as a Cutter (17.8%) and Sinker (17.2%) more than his 4-Seam Fastball
     - I believe that this change in his approach to batters via pitch mix could be at the root of the change in his year to year overall wOBA/xwOBA difference, more specifically in his Pull FB% 
-    - This would be a good entry point to provide further analysis on this topic: how do different pitch mixes affect batted ball types?
+    - This would be a good entry point to provide further analysis on this topic: how do different pitch types (and locations) affect batted ball types?
 
 
-#### Andre Pallante
+### Andre Pallante
 - Andre Pallante is an example of a pitcher that has displayed a tendency to give up a lot of Oppo Groundballs
 - The following table shows that he is also known to underperform his xwOBA value as a pitcher despite having one of the best defenses behind him in the St. Louis Cardinals
   
@@ -431,25 +438,31 @@ This table shows that the type of batted balls that are most likely to lead to a
 
 - He gives up a lot of Groundballs in general, but Oppo GBs at a rate over 3x higher than average!
   - the average Oppo GB% is 5.5%
+- The d_wOBA he surrenders on Oppo Linedrives and Center Linedrives indicates that Pallante may be getting some bad luck in 2023, but even if those 2 types of batted balls produced league average d_wOBA rates, his Oppo GB% would still lead to his underpeforming of his xwOBA as a pitcher
+  - Pallantes overall 2023 d_wOBA: .039
+    - If his d_wOBA on Oppo LDs was .012 instead of .501, then the weighted d_wOBA on Oppo Lds would be: .0003 instead of .014 -> decreasing his d_wOBA to .028
+      - weighted d_wOBA = d_wOBA x rate
+    - If his d_wOBA on Center LDs was -.02 instead of .106, then the weighted d_wOBA on Center LDs would be: -.002 instead of .022 -> decreasing his d_wOBA to .004
   
 
-
-## Conclusions and Assumptions
-- Pull FBs and Oppo GBs will lead to a batter outperforming their xwOBA value (pitcher underperforming)
-- Center FBs will lead to a batter underperforming their xwOBA value (pitcher overperforming)
+## CONCLUSION 
+- Pull FBs and Oppo GBs will help batters outperform their xwOBA value (pitchers underperform)
+- Center FBs will help batters underperform their xwOBA value (pitchers overperform)
   - MLB banning the shift logically should have had some type of impact on this analysis, but we likely need another season of batted balls and the requisite defensive changes that teams are making to draw conclusions
     - It is fair to assume that Oppo GBs will not maintain the magnitude of league-wide difference between wOBA/xwOBA due to this specific rule change (Shift ban)
 - It is not made clear in this analysis how much control a batter or pitcher has over the types of batted balls that they produce
-  - Additionally, I assume that batters likely have more control than pitchers over the batted ball types they produce considering that they are the ones that actually bat the ball
-- That being said, I believe that this affect on batters was more prevalent in the research
-  - the d_wOBA for qualified hitters being .012 and it being .007 for pitchers supports this notion
-  - The larger d_wOBA shows that batters may be able to exploit advantages wheras pitchers are more likely to revert to even out
-  - I also found more batters than pitchers that displayed consistent batted ball  tendencies
+  - Additionally, I assume that batters likely have more control than pitchers over the types of batted ball they produce considering that batters are the ones that actually bat the ball
+- wOBA/xwOBA differences were more prevalent for batters than for pitchers in the research
+  - In addition to the d_wOBA for qualified hitters being .012 and it being .007 for pitchers
+  - I also found more batters than pitchers that displayed consistent batted ball tendencies from season to season
     - This could likely be because all a pitcher has to do to try and get different results is change their pitch usage or pitch location whereas a batter might have to change the mechanics of their swing to stop hitting so many FB to center or to Pull more FB
+    - This effect can be seen when you look at the 4 lists, there are batters that appear on their list multiple times but there are 0 pitchers who are on their list multiple times
 - Despite proving that there is a level of skill that needs to be considered when evaluating any player's wOBA/xwOBA differences, there is still an aspect of luck that wOBA xwOBA differences can help us identify
   - Like the Isaac Paredes example where he underperformed his xwOBA on Oppo GBs in 2022, but that number rebounded in 2023
-  - On the other hand, there is a chance that defenses/pitchers have a batter scouted so accurately that they can counter a batter's approach of exploiting Pull FBs or Oppo GBs
-- All in all, I definitely found what I was looking for and there is a lot more to discover on this topic of wOBA vs. xwOBA differences by batted ball types
+    - On the other hand, there is a chance that defenses/pitchers have a batter scouted so accurately that they can counter a batter's approach of exploiting Pull FBs or Oppo GBs
+- I wonder if as we accumulate more batted ball data, if it would be viable to create an xwOBA value that takes into account the spray angle too considering its notable affect displayed in this project
 
 
-Thank you for checking out this research project!
+
+
+Thank you for checking out this research project! Please email me at josephmontes.baseball@gmail.com with any Questions, Comments, Concerns, Suggestions, Feedback about this project! Or if you would like to see the batted ball breakdown of a specific player. 
