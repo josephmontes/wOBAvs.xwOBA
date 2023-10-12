@@ -244,7 +244,7 @@ This table shows that the type of batted balls that are most likely to lead to a
       - Alonso shows that actual production can be lost by a batter that hits too mamy FBs to Center despite an increase in xwOBA
       
 ### Player Spotlight
-#### Matt Chapman
+### Matt Chapman
   - His wOBA consistently underperforms his xwOBA despite having above average sprint speed (28.3 ft/s)
 ![Screenshot 2023-10-01 012517](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/3335e55f-0f42-456a-bfde-b6c16fd9864f)
 
