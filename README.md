@@ -1,23 +1,23 @@
 # Analyzing wOBA vs. xwOBA differences by Batted Ball Types
 ## Intro
 
-In this baseball project, I use Statcast pitch-by-pitch data from 2019 to 2023 in RStudio to examine the types of batted balls that lead to a player's wOBA outperforming their xwOBA
-- More specifically, I categorize each batted ball into 1 of 12 groups using the following 2 characteristics: horizontal launch angle component - ***Pull, Center, Oppo*** and vertical launch angle component - ***Flyball, Groundball, Linedrive, Popup*** in an attempt to identify wOBA vs. xwOBA differences by batted ball type
+In this baseball project, I use the spray angle calculated from 2019-2023 Statcast pitch-by-pitch data in RStudio to examine the types of batted balls that lead to a player's wOBA outperforming their xwOBA
+- More specifically, I categorize each batted ball into 1 of 12 groups using the following 2 characteristics: <ins>horizontal launch angle component</ins> - ***Pull, Center, Oppo*** and <ins>vertical launch angle component</ins> - ***Flyball, Groundball, Linedrive, Popup*** in an attempt to identify wOBA vs. xwOBA differences by batted ball type
   - Ex: Pull Flyball, Oppo Groundball, Center Linedrive, etc.
 - If there are notable differences in league-wide wOBA and xwOBA based on this categorization, then any individual player's overall wOBA vs. xwOBA difference needs to be looked at more closely through this lens
-- I am not implying that batters or pitchers have complete control over the type of batted ball that occurs *on an at-bat by at-bat basis*, but there are likely tendencies developed through a player's approach, mechanics, pitch usage, etc. that lead to consistent variations in their batted ball types *over the course of a season* (especially for batters)
+- This research does not prove, but it implies that there are tendencies developed through a player's approach, mechanics, pitch usage, etc. that lead to consistent variations in their batted ball types *over the course of a season* (especially for batters)
 
-The motivation for this analysis is that xwOBA is often used to explain that a player may be experiencing good or bad 'luck', but if there are specific types of batted balls that generally lead to notable differences in wOBA vs. xwOBA, then it is likely that a player's overall wOBA/xwOBA difference is less about luck and more about the way that player hits the ball, or how it is hit against them
-- Ultimately, this project aims to identify some level of skill that may be misattributed as luck, and to identify players that exhibit this distinction
+Another motivation for this analysis is that xwOBA is often used to explain that a player may be experiencing good or bad 'luck', but if there are specific types of batted balls that generally lead to notable differences in wOBA vs. xwOBA, then it is likely that a player's overall wOBA/xwOBA difference is less about luck and more about the way that player hits the ball, or how it is hit against them
+- Ultimately, this research aims to identify some level of skill that may be misattributed as luck, and to identify players that exhibit this distinction
 
 ## Analysis
 It is known that a *batter's* **above average sprint speed** can lead to ***outperforming*** his xwOBA and a *pitching team's* **above average defense** can lead the batter to ***underperforming*** his xwOBA 
-- This project is not focused on the batter's sprint speed or the pitching team's defense
+- This research is not focused on the batter's sprint speed or the pitching team's defense
 
-The xwOBA value used in this project comes from Statcast's 'estimated_woba_using_speedangle' column 
+The xwOBA value used in this research comes from Statcast's 'estimated_woba_using_speedangle' column 
   - This calculation of xwOBA only takes into account the **launch speed** and the *vertical* **launch angle** of the batted ball
 
-This project is focused on the *horizontal* component of launch angle (**spray angle**) to see what xwOBA is missing by excluding it
+This research focuses on the *horizontal* component of launch angle (**spray angle**) to see what xwOBA is missing by excluding it
 - The spray angle of every batted ball in the dataset is calculated using Statcast's hit coordinates (hc_x, hc_y) in the following snippet of code
   
   ```allbdat$spray_angle <- with(allbdat, round((atan((hc_x-125.42)/(198.27-hc_y))*180/pi*.75),1))```
@@ -45,7 +45,7 @@ This project is focused on the *horizontal* component of launch angle (**spray a
 
   ![Screenshot 2023-10-06 132953](https://github.com/josephmontes/xwOBAvs.wOBA/assets/125607783/fd4cd8ed-c84c-440b-98d9-21fe8991295b)
 
-This table shows that the type of batted balls that are most likely to lead to a *batter* outperforming their xwOBA are: ***Pulled Flyballs*** and ***Oppo Groundballs***
+This table shows that the type of batted balls that <ins>are most likely to lead to a *batter* outperforming their xwOBA</ins> are: ***Pulled Flyballs*** and ***Oppo Groundballs***
  - To understand why **Pulled Flyballs** lead to the largest *positive* difference in wOBA and xwOBA, it could help to look at the type of batted ball that leads to the largest *negative* difference in wOBA and xwOBA: **Center Flyballs** 
     - Think of it this way; If a ball is hit with 98 mph launch speed and 30° launch angle, then it will have a *high* ***xwOBA*** based on the fact that most balls hit 30°/98mph are able to find a gap or fence to go over for a homerun. But if that 30°/98mph Flyball is hit to Center, then it is more likely that there will be room for a defender to make an out
     - So why don't we see this effect for Oppo Flyballs? Because batters generally have more power to their pull side
@@ -445,18 +445,19 @@ This table shows that the type of batted balls that are most likely to lead to a
     - If his d_wOBA on Center LDs was -.02 instead of .106, then the weighted d_wOBA on Center LDs would be: -.002 instead of .022 -> decreasing his d_wOBA to .004
   
 
-## CONCLUSIONS
+## CONCLUSIONS and NOTES
 - Pull FBs and Oppo GBs will help batters outperform their xwOBA value (pitchers underperform)
+- Any player who is experiencing above or below average d_wOBA in a specific category should be expected to return to more league averages, unless they have a high Hard Hit%
 - Center FBs will help batters underperform their xwOBA value (pitchers overperform)
-  - MLB banning the shift logically should have had some type of impact on this analysis, but we likely need another season of batted balls and the requisite defensive changes that teams are making to draw conclusions
-    - It is fair to assume that Oppo GBs will not maintain the magnitude of league-wide difference between wOBA/xwOBA due to this specific rule change (Shift ban)
+- MLB banning the shift logically should have had some type of impact on this analysis, but we likely need another season of batted balls and the requisite defensive changes that teams are making to draw conclusions
+  - It is fair to assume that Oppo GBs will not maintain the magnitude of league-wide difference between wOBA/xwOBA due to this specific rule change (Shift ban)
 - It is not made clear in this analysis how much control a batter or pitcher has over the types of batted balls that they produce, but it's suggested that batters have more control than pitchers do
-- wOBA/xwOBA differences (the magnitude of 'd_OBA) were more prevalent for batters than for pitchers in the research
+- wOBA/xwOBA differences (the magnitude of 'd_OBA) were more apparent for batters than for pitchers in the research
   - In addition to the d_wOBA for qualified hitters being .012 and it being .007 for pitchers, I also found a higher quantity of batters compared to pitchers that display consistent batted ball tendencies from season to season
     - This effect can be seen when you look at the 4 lists, there are batters who appear on their list multiple times but there are 0 pitchers who are on their list multiple times
     - This could likely be because all a pitcher has to do to try and get different results is change their pitch usage or pitch location whereas a batter might have to change the mechanics of their swing to stop hitting so many FB to center or to Pull more FB
 - Despite proving that there is a level of skill that needs to be considered when evaluating any player's wOBA/xwOBA differences, there is still an aspect of luck that wOBA xwOBA differences can help us identify
-  - Like the Isaac Paredes Player Spotlight example where I highlighted how he underperformed his xwOBA on Oppo GBs in 2022, but that number rebounded in 2023
+  - Like the Isaac Paredes Player Spotlight example where he underperformed his xwOBA on Oppo GBs in 2022, but that value rebounded in 2023 potentially contributing to his great season
   - On the other hand, there is a chance that defenses/pitchers have a batter scouted so accurately that they can counter a batter's approach of exploiting Pull FBs or Oppo GBs
 - Going forward, I wonder if it would be viable to create an xwOBA value that takes into account the spray angle too, considering its notable effect displayed in this project
 
